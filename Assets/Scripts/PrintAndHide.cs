@@ -6,10 +6,12 @@ public class PrintAndHide : MonoBehaviour
 {
     [SerializeField] private int i;
     public Renderer rend;
+    [SerializeField] private int randomNumber;
 
     // Start is called before the first frame update
     void Start()
     {
+        randomNumber = Random.Range(200,251);
         i = 3;
     }
 
@@ -17,6 +19,10 @@ public class PrintAndHide : MonoBehaviour
     void Update()
     {
         i++;
-        Debug.Log(this.gameObject.name + ":" + i);
+        Debug.Log(gameObject.name + ":" + i);
+        if (gameObject.tag.Equals("Red") && i == 100)
+            gameObject.SetActive(false);
+        else if (gameObject.tag.Equals("Blue") && i == randomNumber)
+            rend.enabled = false;
     }
 }
